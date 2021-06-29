@@ -17,7 +17,6 @@ const Index: React.FC<PropI> = ({ characters }) => {
     <>
       <Head>
         <title>Rick and Morty</title>
-        <meta name="description" content="A Simple Next Application" />
       </Head>
       <Nav />
       <div className="flex flex-wrap p-3 gap-2 justify-center w-full">

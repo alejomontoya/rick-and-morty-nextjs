@@ -7,7 +7,7 @@ const Nav = () => (
     <nav className='h-16 bottom-1 shadow-sm p-4 '>
       <ul className='flex justify-between w-full items-center'>
         <li>
-          <Link href='/'>
+          <Link href='/' passHref>
             <div className="d-flex items-center">
               <Logo width={40} height={40} className='cursor-pointer' />
             </div>
