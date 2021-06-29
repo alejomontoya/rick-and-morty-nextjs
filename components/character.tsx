@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface PropI {
   id: number
@@ -10,9 +11,11 @@ interface PropI {
 
 const Character: React.FC<PropI> = ({ id, name, species, image }) => (
   <div className='w-60 rounded-md h-auto bg-gray-600'>
-    <img
+    <Image
       src={image}
       alt={name}
+      width={240}
+      height={240}
       className='h-60 w-full rounded-t-md object-cover'
     />
     <div className='p-5 w-full flex flex-col'>

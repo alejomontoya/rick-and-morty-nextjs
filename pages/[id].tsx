@@ -2,6 +2,7 @@ import { GetServerSideProps, NextPage } from 'next'
 import React from 'react'
 import Head from 'next/head'
 import Nav from '../components/nav'
+import Image from 'next/image'
 
 interface CharacterProp {
   name: string
@@ -34,7 +35,13 @@ const Character: NextPage<CharacterProp> = ({
       </Head>
       <Nav />
       <div className='flex p-5 gap-3 flex-col justify-center md:flex-row'>
-        <img src={image} alt={name} className=' h-70 sm:h-96 ' />
+        <Image
+          src={image}
+          alt={name}
+          width={240}
+          height={240}
+          className='h-70 sm:h-96'
+        />
         <div className='grid grid-cols-1 gap-2 sm:grid-cols-2'>
           <h1>
             <strong className='text-green-400'>Name:</strong> {name}
