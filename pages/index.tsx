@@ -6,9 +6,9 @@ import Nav from '../components/nav'
 
 interface PropI {
   characters: {
-    id: number,
-    name: string,
-    species: string,
+    id: number
+    name: string
+    species: string
     image: string
   }[]
 }
@@ -19,7 +19,7 @@ const Index: React.FC<PropI> = ({ characters }) => {
         <title>Rick and Morty</title>
       </Head>
       <Nav />
-      <div className="flex flex-wrap p-3 gap-2 justify-center w-full">
+      <div className='flex flex-wrap p-3 gap-4 justify-center w-full dark:bg-black'>
         {characters.map((chatacter) => (
           <Character {...chatacter} key={chatacter.id} />
         ))}
