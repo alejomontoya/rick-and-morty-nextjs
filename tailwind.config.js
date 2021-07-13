@@ -8,7 +8,10 @@ module.exports = {
     }
   },
   variants: {
-    extend: {}
+    extend: {
+      backgroundColor: ['dark'],
+      textColor: ['dark']
+    }
   },
   plugins: []
 }
