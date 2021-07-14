@@ -79,7 +79,7 @@ const Pagination: React.FC<PaginationI> = ({ pages, currentPage }) => {
             <Link href={`/?page=${Number(currentPage) + 1}`}>
               <a
                 className={`${
-                  Number(currentPage) !== pages && 'pointer-events-none'
+                  Number(currentPage) === pages && 'pointer-events-none'
                 } relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50`}
               >
                 <span className='sr-only'>Next</span>
