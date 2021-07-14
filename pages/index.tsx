@@ -3,6 +3,7 @@ import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Character from '../components/character'
 import Nav from '../components/nav'
+import Pagination from '../components/pagination'
 
 interface PropI {
   characters: {
@@ -10,9 +11,16 @@ interface PropI {
     name: string
     species: string
     image: string
-  }[]
+  }[],
+  info: {
+    count: number,
+    pages: number,
+    next: string,
+    prev: string | null | number
+  },
+  currentPage: number
 }
-const Index: React.FC<PropI> = ({ characters }) => {
+const Index: React.FC<PropI> = ({ characters, info, currentPage }) => {
   return (
     <>
       <Head>
@@ -24,16 +32,20 @@ const Index: React.FC<PropI> = ({ characters }) => {
           <Character {...chatacter} key={chatacter.id} />
         ))}
       </div>
+      <Pagination pages={info.pages} currentPage={currentPage}/>
     </>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch(`${process.env.BACKEND_URL}/api/character`)
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { page = 1 } = context.query
+  const res = await fetch(`${process.env.BACKEND_URL}/api/character/?page=${page}`)
   const data = await res.json()
   return {
     props: {
-      characters: data.results
+      characters: data.results,
+      info: data.info,
+      currentPage: page
     }
   }
 }
