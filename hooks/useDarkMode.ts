@@ -9,8 +9,7 @@ function addClassHtml(theme: any | string, removeClass: string) {
 
 
 const useDarkMode = () => {
-  const localTheme = localStorage.getItem('theme') || 'light'
-  const [theme, setTheme] = useState(localTheme)
+  const [theme, setTheme] = useState('light')
 
   const toggleTheme = () => {
     if (theme === 'dark') {
@@ -25,12 +24,15 @@ const useDarkMode = () => {
   }
 
   useEffect(() => {
+    const localTheme = localStorage.getItem('theme') || 'light'
 
-    if (theme === 'dark') {
+    if (localTheme === 'dark') {
       addClassHtml('dark', 'light')
     } else {
       addClassHtml('light', 'dark')
     }
+
+    setTheme(localTheme)
 
     return () => { }
   }, [])
