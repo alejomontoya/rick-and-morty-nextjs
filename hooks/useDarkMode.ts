@@ -9,29 +9,30 @@ function addClassHtml(theme: any | string, removeClass: string) {
 
 
 const useDarkMode = () => {
-  const [theme, setTheme] = useState('light')
+  const localTheme = localStorage.getItem('theme') || 'light'
+  const [theme, setTheme] = useState(localTheme)
 
   const toggleTheme = () => {
     if (theme === 'dark') {
       setTheme('light')
       addClassHtml('light', 'dark')
-
-    } else {
-      setTheme('dark')
-      addClassHtml('dark', 'light')
+      return
     }
+
+    setTheme('dark')
+    addClassHtml('dark', 'light')
+
   }
 
   useEffect(() => {
-    const localTheme = localStorage.getItem('theme')
-    if (localTheme) {
-      setTheme(localTheme)
-      if (localTheme === 'dark') {
-        addClassHtml('dark', 'light')
-      } else {
-        addClassHtml('light', 'dark')
-      }
+
+    if (theme === 'dark') {
+      addClassHtml('dark', 'light')
+    } else {
+      addClassHtml('light', 'dark')
     }
+
+    return () => { }
   }, [])
 
   return {
