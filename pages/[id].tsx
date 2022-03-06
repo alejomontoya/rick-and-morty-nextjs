@@ -35,7 +35,7 @@ const Character: NextPage<CharacterProp> = ({
         <title>{name} - Character</title>
       </Head>
       <Nav />
-      <div className='h-screen dark:bg-black'>
+      <div className='dark:bg-black'>
         <div className='grid p-5 gap-3 flex-col justify-center'>
           <Link href='/'>
             <a className='dark:text-white font-bold '>{'<'} Back to home</a>

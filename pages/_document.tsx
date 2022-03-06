@@ -21,7 +21,7 @@ class MyDocument extends Document {
     return (
       <Html className={this.state.darkMode}>
         <Head />
-        <body>
+        <body className="h-screen">
           <Main />
           <NextScript />
         </body>
