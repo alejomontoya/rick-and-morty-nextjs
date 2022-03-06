@@ -10,7 +10,7 @@ class MyDocument extends Document {
   }
 
   componentDidMount() {
-    if(localStorage.getItem('theme')) {
+    if (localStorage.getItem('theme')) {
       this.setState({
         darkMode: localStorage.getItem('theme')
       })
@@ -21,7 +21,7 @@ class MyDocument extends Document {
     return (
       <Html className={this.state.darkMode}>
         <Head />
-        <body className="h-screen">
+        <body className='h-screen dark:bg-black'>
           <Main />
           <NextScript />
         </body>
