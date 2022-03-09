@@ -79,13 +79,18 @@ const Character: NextPage<CharacterProp> = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { id } = context.query
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { id } = query
   const response = await fetch(
     `https://rickandmortyapi.com/api/character/${id}`
   )
   const data = await response.json()
 
+  if (data.error) {
+    return {
+      notFound: true
+    }
+  }
   return {
     props: {
       ...data
