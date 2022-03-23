@@ -11,13 +11,13 @@ interface PropI {
     name: string
     species: string
     image: string
-  }[],
+  }[]
   info: {
-    count: number,
-    pages: number,
-    next: string,
+    count: number
+    pages: number
+    next: string
     prev: string | null | number
-  },
+  }
   currentPage: number
 }
 const Index: React.FC<PropI> = ({ characters, info, currentPage }) => {
@@ -32,14 +32,16 @@ const Index: React.FC<PropI> = ({ characters, info, currentPage }) => {
           <Character {...chatacter} key={chatacter.id} />
         ))}
       </div>
-      <Pagination pages={info.pages} currentPage={currentPage}/>
+      <Pagination pages={info.pages} currentPage={currentPage} />
     </>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { page = 1 } = context.query
-  const res = await fetch(`${process.env.BACKEND_URL}/api/character/?page=${page}`)
+  const res = await fetch(
+    `${process.env.BACKEND_URL}/api/character/?page=${page}`
+  )
   const data = await res.json()
   return {
     props: {
