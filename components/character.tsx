@@ -6,9 +6,16 @@ interface PropI {
   name: string
   species: string
   image: string
+  pageCharacter?: number
 }
 
-const Character: React.FC<PropI> = ({ id, name, species, image }) => (
+const Character: React.FC<PropI> = ({
+  id,
+  name,
+  species,
+  image,
+  pageCharacter
+}) => (
   <div className='w-60 rounded-md h-auto bg-white border-black border dark:border-white dark:bg-black'>
     <img
       src={image}
@@ -20,7 +27,7 @@ const Character: React.FC<PropI> = ({ id, name, species, image }) => (
         {id}.{name}
       </h1>
       <p className='text-lg text-center mb-2 dark:text-white'>{species}</p>
-      <Link href={`/${id}`}>
+      <Link href={pageCharacter ? `/${id}?page=${pageCharacter}` : `/${id}`}>
         <a className='m-auto border-black dark:text-white dark:border-white border rounded-md p-2'>
           See Details
         </a>

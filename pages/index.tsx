@@ -1,5 +1,5 @@
 import React from 'react'
-import { GetServerSideProps } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import Character from '../components/character'
 import Nav from '../components/nav'
@@ -20,7 +20,7 @@ interface PropI {
   }
   currentPage: number
 }
-const Index: React.FC<PropI> = ({ characters, info, currentPage }) => {
+const Index: NextPage<PropI> = ({ characters, info, currentPage }) => {
   return (
     <>
       <Head>
@@ -29,7 +29,11 @@ const Index: React.FC<PropI> = ({ characters, info, currentPage }) => {
       <Nav />
       <div className='flex flex-wrap p-3 gap-4 justify-center w-full dark:bg-black'>
         {characters.map((chatacter) => (
-          <Character {...chatacter} key={chatacter.id} />
+          <Character
+            {...chatacter}
+            pageCharacter={currentPage}
+            key={chatacter.id}
+          />
         ))}
       </div>
       <Pagination pages={info.pages} currentPage={currentPage} />

@@ -18,6 +18,7 @@ interface CharacterProp {
     name: string
   }
   image: string
+  page?: number
 }
 const Character: NextPage<CharacterProp> = ({
   name,
@@ -27,7 +28,8 @@ const Character: NextPage<CharacterProp> = ({
   gender,
   origin,
   location,
-  image
+  image,
+  page
 }) => {
   return (
     <>
@@ -36,7 +38,7 @@ const Character: NextPage<CharacterProp> = ({
       </Head>
       <Nav />
       <div className='grid p-5 gap-3 flex-col justify-center'>
-        <Link href='/'>
+        <Link href={page ? `/?page=${page}` : '/'}>
           <a className='dark:text-white font-bold '>{'<'} Back to home</a>
         </Link>
         <img src={image} alt={name} className='h-48 sm:h-50 w-full md:w-auto' />
@@ -80,7 +82,7 @@ const Character: NextPage<CharacterProp> = ({
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { id } = query
+  const { id, page } = query
   const response = await fetch(
     `https://rickandmortyapi.com/api/character/${id}`
   )
@@ -93,6 +95,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   }
   return {
     props: {
+      page,
       ...data
     }
   }
